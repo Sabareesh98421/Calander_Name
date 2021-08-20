@@ -1,0 +1,82 @@
+<!-- newyear count.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/new year count css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    <title>New Year EVE</title>
+</head>
+<body>
+
+    <div id="container">
+        <center>
+                <div id="inputdate">
+                    <input type="date" id="date1">
+                    <input type="button" value="button text" id="btn" onclick="myfunction()">
+                </div>
+                <br>
+                <br>
+                <br>
+            <div id="txt1">NEW YEAR EVE</div>
+        </center>
+
+           <div id="live">
+                <div id="Day1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div id="Hrs1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div id="Min1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div id="Sec1"></div>
+           </div>
+        <div id="timing">
+            <div id="Day">Days</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="Hrs">Hrs</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="Min">Min</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="Sec">Sec</div>
+        </div>    
+    </div>
+    <script>    
+        
+         const newyear = document.getElementById("date1");
+         const days_a=document.getElementById("Day1");
+         const Hrs_a=document.getElementById("Hrs1");
+         const Min_a=document.getElementById("Min1");
+         const sec_a=document.getElementById("Sec1");
+         
+      
+            
+        function myfunction()
+        {
+              function count()
+            {
+                // var newyear = document.getElementById("date1").innerHTML.value;
+                 //var newyear1 = document.getElementById("date1").value;
+                var newyear1 = newyear.value;
+                // alert(newyear)
+                const new_year_date = new Date(newyear1);
+                const currentdate = new Date();
+                const sec = (new_year_date - currentdate) / 1000;
+                console.log((new_year_date - currentdate));
+                const days = Math.floor(sec / 3600 / 24);
+                console.log(days)
+                const hours = Math.floor(sec / 3600) % 24;
+                console.log(hours)
+                const min = Math.floor(sec / 60) % 60;
+                   console.log(min)                
+                const seconds = Math.floor(sec) % 60
+                console.log(seconds)
+                days_a.innerHTML = days;
+                Hrs_a.innerHTML = hours;
+                Min_a.innerHTML = min;
+                sec_a.innerHTML = seconds;
+           }
+            
+            setInterval(count, 1000);
+            
+        }
+          
+    </script>
+    
+</body>
+</html>

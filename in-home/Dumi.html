@@ -1,0 +1,39 @@
+ <!-- Dumi.html -->
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Dumi</title>
+     <link rel="stylesheet" href="css/dumi style.css">
+ </head>
+ <body>
+    <div id="conta">
+        <div id="rectangle">
+           
+            <div id="display">
+                
+              <div id="txt1">Background Color:-</div>
+              <div id="txt2"></div>
+              
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value=" button " id="btn1" onclick="myfunction()"/>
+        </div>
+       
+       
+    </div>
+     <script>
+         var hex;
+        function myfunction()
+         {
+            
+            hex="#"+Math.floor(Math.random()* 16777215).toString(16);
+             document.body.style.backgroundColor = hex;
+             var result = document.getElementById("txt2").innerHTML = hex;
+             return hex;
+         }
+       
+         
+     </script>
+ </body>
+ </html>

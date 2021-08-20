@@ -1,0 +1,57 @@
+/* usegridstyle.css */
+*
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+#main
+{
+    grid-area: main;
+}
+#sidediv
+{
+     grid-area: sidediv;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#cont1
+{
+      grid-area: cont1;
+}
+#cont2
+{
+     grid-area: cont2;
+  
+}
+#cont3
+{
+      grid-area: cont3;
+    
+}
+#footer
+{
+    grid-area: footer;
+}
+#whole
+{
+    display: grid;
+    grid-template-areas: 
+    'main main main main'
+    'sidediv cont1 cont1  cont2'
+    'sidediv cont3 cont3 cont3'
+    'footer footer footer footer';
+    color: white;
+    grid-gap: 10px;
+    background-color: aqua;
+    padding: 10px;
+}
+
+#whole>div
+{
+    background-color: blue;
+    text-align: center;
+    padding: 20px 0;
+}
