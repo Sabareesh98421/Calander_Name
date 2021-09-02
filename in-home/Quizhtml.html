@@ -1,37 +1,48 @@
 <!-- quizhtml.html -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
     <link rel="icon" href="QG1.jpg">
     <link rel="stylesheet" href="css/quiz_css.css">
-    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div id="container">
-        <center>
-            <ul id="forQ-A">
-                <li><h4 id="Qus">
-                    <label for="qus">Question</label>
-                </h4></li>
-                <br>
-                <li class="li-label" ><input type="radio" name="a"    id="a">
-                    <label for="a">Answers..!!</label>
-                </li>&nbsp;
-                <li  class="li-label"><input type="radio" name="a"   id="b">
-                    <label for="b">Answers..!!</label>
-                </li>&nbsp;
-                <li  class="li-label"><input type="radio" name="a"   id="c">
-                    <label for="c">Answers..!!</label>
-                </li>&nbsp;
-                <li  class="li-label"><input type="radio" name="a"    id="d">
-                    <label for="d">Answers..!!</label>
-                </li>&nbsp;
-            </ul>
-       
-          <button id="btn" value="submit">Submit</button>
-        </center>
+        <ul id="forQ-A" >
+            <label for="s_no" id="s_no"></label>
+            <li>
+                <h4 id="Qus">
+                    <label for="qus" id="qus">Question</label>
+                </h4>
+            </li>
+            <br>
+            <li class="li-label" ><input type="radio" name="a" id="a" class="opt_ans" >
+                <label for="a" id="a1">Answers..!!</label>
+            </li>&nbsp;
+            <li class="li-label"><input type="radio" name="a" id="b" class="opt_ans" >
+                <label for="b" id="b1">Answers..!!</label>
+            </li>&nbsp;
+            <li class="li-label"><input type="radio" name="a" id="c" class="opt_ans" >
+                <label for="c" id="c1">Answers..!!</label>
+            </li>&nbsp;
+            <li class="li-label"><input type="radio" name="a" id="d" class="opt_ans" >
+                <label for="d" id="d1">Answers..!!</label>
+            </li>
+            <br>
+        </ul>
+        <button id="btn" value="submit">Submit</button>
+
     </div>
+    <div id="scoreBoard">
+        <label id="score" for="score"></label>
+    </div>
+    <div>hi</div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/Quiz_js.js"></script>
 </body>
+
 </html>
