@@ -1,0 +1,199 @@
+<!-- fruits.html-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruites Bill</title>
+    
+    <link rel="stylesheet" href="css/fruits.css">
+</head>
+<body>
+    <div id="container">
+      <div id="left">
+                <div id="head">
+                  <lable id="bill_no">Bill no</lable>
+                  <input type="text" id="bill"  class="inpts1" />
+                  <lable id="cust_name" class="name">Name</lable>
+                    <input type="text" id="inpts1" class="name" required/>
+                    <label for="Date" id="dte" class="date">Date</label>
+                    <input type="date" name="date" id="dte_inpt" required/>
+                  </div>
+                  
+            <form action="Fruites.html" method="post" id="frm">
+              <lable for="prd" class="lbl " >Product  
+              <select name="fruits" id="dd" class="inpts" required>
+                <option value="empty" id="lst1"> </option>
+                <option value="Apple"      class="opt">Apple</option>
+                <option value="Grapes"    class="opt">Grapes</option>
+                <option value="Orange"    class="opt" >Orange</option>
+                <option value="Bananna"  class="opt">Bananna</option>
+              </select>
+            
+                </lable>
+                <br>
+                <label for="Price" class="lbl"> Price  </label>  <input type="number" name="num2" class="inpts" required  id="price" oninput="amount()"/><label for="kg" id="kg">/kg </label><br>
+                <label for="Qty" class="lbl">   Qty  </label> <input type="number" name="num1" class="inpts"    required    id="Qty" oninput="amount()"/><br>
+                <label for="amount" class="lbl">Amount <label for="amountdis" id="amt"></label></label><br>
+                <input type="button" value=" Place Order " class="btn1" onclick="buynow()" >
+                <input type="button" value=" Shop More " class="btn1" id="sm" onclick="Sm()">
+          </form>
+    </div>
+    <div id="right">
+          <div id="align_tbl">
+                <table id="tbl">
+                    <tr>
+                        <th>S_no</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Amount</th>
+                        <th ></th>
+                    </tr>
+                  </table>      
+            </div>      
+              <div id="rbtns">
+                <input type="button" value="Print" id="Print"     class="btn" >
+                <input type="button" value="Delete" id="del"    class="btn"  onclick="del()">
+              </div>  
+          <div id="total_dis">
+            Total
+            <label for="Total_lbl" id="total" ></label>
+            </div> 
+        </div>
+    </div>
+      
+    <script>
+        var total=0;
+        var   sno=1;
+        var check_id
+        var amount_dis;
+        var check;
+        var s_row;
+        var i,j;
+        var qty,price,prd;
+        var edit_text,edit_row;
+        var amount_dis;
+        
+        function Sm()
+        {
+          if(edit_text=="editmode")
+          {
+                  var tbl=document.getElementById("tbl");
+                  tbl.rows[edit_row].cells[1].innerHTML=document.getElementById("dd").value;
+                  tbl.rows[edit_row].cells[2].innerHTML=document.getElementById("price").value;
+                  tbl.rows[edit_row].cells[3].innerHTML=document.getElementById("Qty").value;
+                  tbl.rows[edit_row].cells[4].innerHTML=amount_dis;
+                  find_total();
+                  clearform();
+                  edit_text=" ";
+          }
+          else
+          {
+              prd=document.getElementById("dd").value;
+              price=document.getElementById("price").value;
+              qty=document.getElementById("Qty").value;
+              amount_dis=qty*price;
+              document.getElementById("amt").innerText=amount_dis;
+              var tbl=document.getElementById("tbl");
+              check=document.createElement("input");
+              var  w_cb1=check.setAttribute("type","checkbox");
+              check_id=check.setAttribute("id","cb"+sno);
+              check_cls=check.setAttribute("class","cb");
+              var rows_new=tbl.insertRow(tbl.length);
+              rows_new.setAttribute("id",sno);
+              cell1=rows_new.insertCell(0);
+              cell2=rows_new.insertCell(1);
+              cell3=rows_new.insertCell(2);
+              cell4=rows_new.insertCell(3);
+              cell5=rows_new.insertCell(4);
+              cell6=rows_new.insertCell(5);
+              cell1.innerHTML=sno;
+              cell2.innerHTML=prd;
+              cell3.innerHTML=price;
+              cell4.innerHTML=qty;
+              cell5.innerHTML=amount_dis;
+              cell6.appendChild(check);
+              sno++;
+              find_total();
+            clearform();   
+          }
+        }
+        document.getElementById("tbl").addEventListener("click",FindSelctedRow);
+        
+     
+
+
+        function FindSelctedRow()
+        {
+          edit_text="editmode";
+          for ( j=1;j<tbl.rows.length;j++)
+         {
+            tbl.rows[j].onclick = function()
+
+                {
+                  edit_row= this.rowIndex;
+              
+                  
+                  document.getElementById("dd").value=this.cells[1].innerHTML;
+                  
+                  document.getElementById("price").value=this.cells[2].innerHTML;
+                  
+                  document.getElementById("Qty").value=this.cells[3].innerHTML;
+                  document.getElementById("amt").value=this.cells[4].innerHTML;
+                  
+              
+                }
+          }
+        }
+        function amount()
+        {
+            var price=document.getElementById("price").value;
+            var qty=document.getElementById("Qty").value;
+            
+            amount_dis=qty*price;
+            document.getElementById("amt").innerText="  " +amount_dis;
+        }
+        function clearform()
+        {
+            var price=document.getElementById("price");
+            var qty=document.getElementById("Qty");
+            prd.value= document.getElementById("lst1").value;
+            price.value="";
+            qty.value="";
+            document.getElementById("amt").innerText="";
+        }
+    function find_total()
+    {
+    
+      for ( i=1; i<tbl.rows.length; i++)
+        {
+          sno=i
+            tbl.rows[i].cells[0].innerText=sno;
+            total=total+Number(tbl.rows[ i ].cells[4].innerHTML);
+        }
+        
+        document.getElementById("total").innerText=total;
+        total=0;  
+        
+    }
+  function del()
+    {
+      var z=1;
+      while (z<tbl.rows.length) 
+      {
+        var o = tbl.rows[z].cells[5].children[0];
+              if (o&& o.checked)
+              {  
+                
+                tbl.deleteRow(z);
+                find_total(); 
+              } 
+              else 
+              {
+                z++;
+              }
+      }
+}
+  </script>
+</body>
+</html>
