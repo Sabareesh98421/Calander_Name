@@ -1,0 +1,222 @@
+<!-- calendergridboxes.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/CGBstyle.css">
+    <title>Calender</title>
+</head>
+<body background="sunrises.jpg">
+    <div id="container">
+        <div id="forms1">
+            <label for="Year">Year &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="number" name="Year" id="y1" max="4">
+            <br><br>
+            <label for="Month">Month &nbsp;&nbsp;</label>
+            <input type="number" name="Month" id="m1">
+            <br><br>
+            
+            <div class="buttons">
+                <button type="button" id="#btn1" value="Search" onclick="year()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search</button>
+            </div>
+        </div>
+        <br>
+    <!-- <img src="sunrises.jpg" alt=""> -->
+    <div id="days">
+        <p class="weekdays">Sun</p>
+        <p class="weekdays">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mon</p>
+        <p class="weekdays">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thu</p>
+        <p class="weekdays">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wed</p>
+        <p class="weekdays">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thu</p>
+        <p class="weekdays">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fri</p>
+        <p class="weekdays">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sat</p>
+        <hr>
+    </div>
+    <br>
+    
+    <div id="grids">      
+    
+    <script>
+        var year1;
+        var y_m;
+        var Mdate=1;
+        var leapyear;
+        var day;
+        var nday;
+        var btnblock;
+        var text;
+           
+            var boxes, i, j;
+            for (i = 1; i <= 35; i++)
+            {
+                boxes = document.createElement("div");
+                boxes.setAttribute("id", "a" + i);
+                boxes.setAttribute("class", "row" + i);
+                document.querySelector("#grids").appendChild(boxes);
+                boxes.style.height = "50px";
+                boxes.style.width = "50px";
+                boxes.style.maxHeight = "100%";
+                boxes.style.maxWidth = "50%";
+                boxes.style.position = "relative";
+                boxes.style.display = "flex";
+                boxes.style.justifyContent = "center";
+                boxes.style.alignItems = "center";
+            }
+        
+        function year()
+        {
+          year1=document.getElementById("y1").value;
+            // year1=document.getElementById("y1").va
+          var century_code, month_code, m;
+          y_m=document.getElementById("m1").value;
+            var c = year1;
+            var m = y_m;
+            // alert(typeof(c))
+            var inputyear;// last 2 digit of given year
+            inputyear=c.toString();
+            // alert(typeof(c))
+            // var newyear1 =inputyear.substring(0,2);//centuerycode
+            var newyear1 =inputyear.substring(2);
+            var newyear2=parseInt(newyear1);
+            var leap_check =parseInt(c)
+            // alert(typeof(c));
+            // = parseInt(c % 4) && parseInt(c % 100) && parseInt(c % 400);
+            if(leap_check%100==0)
+            {
+            
+                if(leap_check%4 ==0 && leap_check%400==0)
+                {
+                    leap_check=0;
+                }
+                else
+                {
+                    leap_check=1;
+                    alert("this is  not a leap year")
+                }
+                
+            }
+            else
+            {
+                if (leap_check % 4 == 0 )
+                {
+                    leap_check = 0;
+                }
+                else {
+                    leap_check = 1;
+                    alert("this is  not a leap year")
+                }
+                leap_check=0;
+                alert("this is  leap year");
+            }
+            // alert(parseInt(c%4))
+            // alert(leap_check)
+                if (newyear2<4)
+                {
+                    leapyear=0;
+                }
+                else 
+                {
+                    leapyear=parseInt(newyear2/4);
+                    //    alert(newyear2);
+                    //    alert(leapyear);
+                }
+                if ((leap_check == 0 && m == 1) || (leap_check == 0 && m == 2)) {
+                // alert(" this given year has leap year")
+                day = (f_day - 1) % 7;
+                // alert(day)4
+            }
+            else {
+                day = f_day % 7;
+            } 
+            if (c >= 2000 && c <= 2099)
+            {
+                century_code = 6;
+            }
+            if (m ==1) {
+                month_code = 1;
+            }
+             if (m == 2) {
+                month_code = 4;
+            }
+            if(m==3)
+            {
+                month_code=4;
+            }
+            if (m == 4) {
+                month_code = 0;
+            }
+            if (m == 5) {
+                month_code = 2;
+            }
+            if (m == 6) {
+                month_code = 5;
+            }
+            if (m == 7) {
+                month_code =0;
+            }
+            if (m == 8) {
+                month_code = 3;
+            }
+            if (m == 9) {
+                month_code = 6;
+            }
+            if (m == 10) {
+                month_code = 1;
+            }
+            if (m == 11) {
+                month_code = 4;
+                
+            }
+            if (m == 12) {
+                month_code = 6;
+            }
+        
+            var f_day=Mdate+month_code+century_code+newyear2+leapyear;
+                //       1 + 4        + 6          +11       +2                                      
+            
+                      
+            if(m == 1|| m == 3|| m ==5 ||m==7||m==8||m==10||m==12)
+            {
+                    nday=31;
+            
+            }
+            if (m == 4 || m == 6 || m == 9 || m == 11)
+            {
+                nday = 30;
+            }
+            if(m==2 && leap_check==0)
+            {
+                nday=29;
+                // alert(nday +"  "+ "this is  leap yer");
+            }
+
+            if(m==2 && leap_check!=0)
+            {
+                nday=28;
+                // alert(nday+" "+"this is not leap yer");
+            }
+            for (i = 1; i <= nday; i++) {
+                text = document.createElement("p");
+                text.setAttribute("class","date")
+                text.innerText = i;
+                document.querySelector("#a"+day).appendChild(text);
+                day++
+            }
+            
+          
+            
+         }
+        // date+ month code+ centry code +year(last 2)+ leapyear
+       
+        
+        
+     
+        
+        
+        
+        
+    </script>
+    </div>
+    
+</body>
+</html>
