@@ -1,0 +1,242 @@
+<!-- calendergridboxes.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/CGBstyle.css">
+    <title>Calender</title>
+</head>
+<body >
+    <div id="container">
+        <div id="forms1">
+            <label for="Year">Year &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="number" name="Year" id="y1" placeholder="2000-2099">
+            <br><br>
+            <label for="Month">Month &nbsp;&nbsp;</label>
+            <input type="number" name="Month" id="m1">
+            <br><br>
+            
+            <div class="buttons">
+                <button type="button" id="#btn1" value="Search" onclick="year()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search</button>
+            </div>
+        </div>
+        <br>
+    <!-- <img src="sunrises.jpg" alt=""> -->
+    <div id="days">
+        <span>Sat</span>
+        <span>Sun</span>
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        
+        <hr>
+    </div>
+    <br>
+    
+    <div id="grids">      
+    
+    <script>
+        var year1;
+        var y_m;
+        var Mdate=1;
+        var leapyear;
+        var day;
+        var nday;
+        var btnblock;
+        var text;
+           
+            var boxes, i, j;
+            for (i = 0; i <= 34; i++)
+            {
+                boxes = document.createElement("div");
+                boxes.setAttribute("id", "a" + i);
+                boxes.setAttribute("class", "row" + i);
+                document.querySelector("#grids").appendChild(boxes);
+                boxes.style.height = "50px";
+                boxes.style.width = "50px";
+                boxes.style.maxHeight = "100%";
+                boxes.style.maxWidth = "50%";
+                boxes.style.position = "relative";
+                boxes.style.display = "flex";
+                boxes.style.justifyContent = "center";
+                boxes.style.alignItems = "center";
+              
+            }
+        
+        function year()
+        {
+          var month=document.getElementById("m1").value;
+          var inpt_year=document.getElementById("y1").value;
+          if (month<1 || month>12 )
+          {
+               
+                alert("month should be 1-12");
+                month=" " ;      
+                var month1=document.getElementById("m1");
+                month1.style.border="2px solid red";
+                month1.style.backgroundColor="red";
+          }
+           if(inpt_year<2000 || inpt_year>2099)
+           {
+            
+                var year1=document.getElementById("y1");
+                year1.style.border="2px solid red";
+                year1.style.backgroundColor="red";
+           }
+            year1=document.getElementById("y1").value;
+          
+            var century_code, month_code, m;
+            y_m=document.getElementById("m1").value;
+            var c = year1;
+            var m = y_m;
+            
+            var inputyear;// last 2 digit of given year
+            inputyear=c.toString();
+            var newyear1 =inputyear.substring(2);//centuerycode
+            var newyear2=parseInt(newyear1);
+            var leap_check =parseInt(c)
+            if(leap_check%100==0)
+            {
+            
+                if(leap_check%4 ==0 && leap_check%400==0)
+                {
+                    leap_check=0;
+                }
+                else
+                {
+                    leap_check=1;
+            
+                } 
+            }
+            else
+            {
+                if (leap_check % 4 == 0 )
+                {
+                    leap_check = 0;
+                }
+                else {
+                    leap_check = 1;
+            
+                }
+            
+            }
+            
+                if (newyear2<4)
+                {
+                    leapyear=0;
+                }
+                else 
+                {
+                    leapyear=parseInt(newyear2/4);
+                    
+                }
+            
+            if (c >= 2000 && c <= 2099)
+            {
+                century_code = 6;
+            }
+            if (m ==1) 
+            {
+                month_code = 1;
+            }
+             if (m == 2) 
+             {
+                month_code = 4;
+            }
+            if(m==3)
+            {
+                month_code=4;
+            }
+            if (m == 4) 
+            {
+                month_code = 0;
+            }
+            if (m == 5) 
+            {
+                month_code = 2;
+            }
+            if (m == 6) 
+            {
+                month_code = 5;
+            }
+            if (m == 7) 
+            {
+                month_code =0;
+            }
+            if (m == 8) 
+            {
+                month_code = 3;
+            }
+            if (m == 9) 
+            {
+                month_code = 6;
+            }
+            if (m == 10) 
+            {
+                month_code = 1;
+            }
+            if (m == 11) 
+            {
+                month_code = 4;
+                
+            }
+            if (m == 12) 
+            {
+                month_code = 6;
+            }
+        
+            var f_day=Mdate+month_code+century_code+newyear2+leapyear;
+            
+            
+  
+            if(m == 1|| m == 3|| m ==5 ||m==7||m==8||m==10||m==12)
+            {
+                    nday=31;
+            
+            }
+            if (m == 4 || m == 6 || m == 9 || m == 11)
+            {
+                nday = 30;
+            }
+            if(m==2 && leap_check==0)
+            {
+                nday=29;
+      
+            }
+
+            if(m==2 && leap_check!=0)
+            {
+                nday=28;
+            
+            }
+      
+              if ((leap_check == 0 && m == 1) || (leap_check == 0 && m == 2))
+            {
+                    
+                    day = parseInt((f_day - 1) % 7);
+                    
+                
+            }
+                else
+                {
+                  
+                    day = parseInt(f_day % 7);
+                   
+                } 
+               
+            for (j = 1; j <= nday; j++) 
+            {
+                text = document.createElement("p");
+                text.setAttribute("class","date")
+                text.innerHTML=j
+                document.querySelector("#a"+day).appendChild(text);
+                day++
+            }
+        }
+     </script>
+    </div>
+    
+</body>
+</html>
